@@ -12,6 +12,11 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        inter: ["Inter", 'sans-serif'],
+        poppins: ['Poppins', 'sans-serif'],
+        oswald: ['Oswald', 'sans-serif']
+      },
     },
   },
   plugins: [],
