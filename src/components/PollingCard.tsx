@@ -24,9 +24,7 @@ function PollingCard<T>() {
     const toggleMultipleOptionSwitch = () => setMulitpleOptionToggle(!mulitpleOptionToggle);
     const toggleAllowCommentSwitch = () => setAllowCommentToggle(!allowCommentToggle);
     const toggleScheduleSwitch = () => setScheduleToggle(!scheduleToggle);
-    const onChangeScheduleDate = (e: any) => {
-        setScheduleDate(e.target.value)
-    }
+    const onChangeScheduleDate = (e: any) => setScheduleDate(e.target.value)
 
     return (
         <div className="flex w-full lg:w-[50%] rounded overflow-hidden shadow-lg bg-[#393E46] px-8 py-8">
