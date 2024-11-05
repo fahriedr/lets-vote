@@ -1,7 +1,7 @@
 "use client"
 
-import Navbar from "@/components/Navbar";
-import PollingCard from "@/components/PollingCard";
+import Navbar from "@/app/components/Navbar";
+import PollingCard from "@/app/components/PollingCard";
 import Image from "next/image";
 import { useState } from "react";
 

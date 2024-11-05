@@ -1,4 +1,4 @@
-import Navbar from '@/components/Navbar'
+import Navbar from '@/app/components/Navbar'
 import React from 'react'
 
 const About = () => {
