@@ -1,13 +1,11 @@
 export type Poll = {
     title: string;
-    option: Option[];
-    isSelectMultiple: boolean;
-    isAllowComment: boolean;
-    isCloseWithDate: boolean;
-    endDate?: string;
-    voteSecurity: VoteSecurity;
-    isRequireName: boolean;
-    name?: string;
+    options: Option[];
+    multiple_choice: boolean;
+    allow_comment: boolean;
+    end_date?: string;
+    vote_security: VoteSecurity;
+    require_voter_name: boolean;
 };
 
 export type Option = {
@@ -15,6 +13,12 @@ export type Option = {
 }
 
 export enum VoteSecurity {
-    IpAddress,
-    BrowserSection
+    IP = "ip",
+    BROWSER = "browser"
+}
+
+export type Vote = {
+    name?: string;
+    poll_id: string;
+
 }
