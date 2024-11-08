@@ -9,7 +9,8 @@ export type Poll = {
 };
 
 export type Option = {
-    name: string;
+    uuid: string;
+    value: string;
 }
 
 export enum VoteSecurity {
