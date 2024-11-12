@@ -6,6 +6,8 @@ import { ZodError, z,  } from "zod"
 import slugify from "slugify"
 import { v4 as uuidv4 } from 'uuid'
 import { randomUniqueIdGenerator } from "@/app/lib/helper"
+import momment from "moment"
+import moment from "moment"
 
 const pollSchema = z.object({
 	title: z.string(),
@@ -51,6 +53,8 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
 			return opt
 		})
 
+		console.log(moment().format('YYYY-MM-DD h:mm:ss'), 'date')
+
 		const poll = new Poll({
 			unique_id: randomUniqueIdGenerator(),
 			title: data.title,
@@ -60,7 +64,8 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
 			allow_comment: data.allow_comment,
 			end_date: data.end_date ?? null,
 			vote_security: data.vote_security,
-			require_voter_name: data.require_voter_name
+			require_voter_name: data.require_voter_name,
+			created_at: moment().format('YYYY-MM-DD h:mm:ss')
 		})
 
 		const response = await poll.save()

@@ -1,14 +1,27 @@
-import Navbar from '@/app/components/Navbar'
-import React from 'react'
+import React from "react"
+import PollDetail from "../components/PollDetail"
 
-const Detail = () => {
-  return (
-    <div>
-      <div>
-        Detail
-      </div>
-    </div>
-  )
+interface Param {
+  params: {
+    id: string
+  }
+}
+
+const Detail = async (
+    {params} : Param
+  )=> {
+
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
+
+  const { id } = await params
+ 
+  const res = await fetch(`${baseUrl}/api/poll/${id}`, {
+    method: 'GET'
+  })
+
+  const result = await res.json()
+
+  return <PollDetail data={result.data}/>
 }
 
 export default Detail

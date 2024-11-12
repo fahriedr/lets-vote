@@ -6,6 +6,7 @@ export type Poll = {
     end_date?: string;
     vote_security: VoteSecurity;
     require_voter_name: boolean;
+    date?: Date
 };
 
 export type Option = {
@@ -21,5 +22,4 @@ export enum VoteSecurity {
 export type Vote = {
     name?: string;
     poll_id: string;
-
 }

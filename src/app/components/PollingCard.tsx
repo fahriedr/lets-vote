@@ -1,5 +1,4 @@
 import React, { useState } from "react"
-import { z } from "zod"
 import { VoteSecurity } from "../types"
 import moment from "moment"
 
@@ -23,8 +22,6 @@ function PollingCard() {
 	const [requireName, setRequireName] = useState(false)
 	const [voteSecurity, setVoteSecurity] = useState<VoteSecurity>()
 	const [options, setOptions] = useState([""])
-
-	const [form, setForm] = useState<Form>()
 
 
 	// ====================================================== //
@@ -50,7 +47,6 @@ function PollingCard() {
 		if(result.errors) {
 		}
 
-		console.log(result, 'res');
 	}
 
 	const handleAddOption = () => {

@@ -10,7 +10,8 @@ interface IPoll {
     allow_comment: boolean;
     end_date?: string;
     vote_security: VoteSecurity;
-    require_voter_name: boolean
+    require_voter_name: boolean;
+    created_at: Date;
 }
 
 export const pollSchema = new Schema<IPoll>({
@@ -23,6 +24,8 @@ export const pollSchema = new Schema<IPoll>({
     end_date: {type: String, nullable: true},
     vote_security: {type: String, required: true},
     require_voter_name: {type: Boolean, required: true},
+    created_at: {type: Date, required: true},
+
 });
 
 export const Poll = models.Poll || model<IPoll>('Poll', pollSchema);
