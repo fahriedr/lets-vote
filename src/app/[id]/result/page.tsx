@@ -1,7 +1,4 @@
 import React from "react"
-import CommentSection from "../components/CommentSection"
-import PollDetail from "../components/PollDetail"
-import ShareCard from "../components/ShareCard"
 
 interface Param {
   params: {
@@ -27,9 +24,7 @@ const Detail = async (
   return (
     <>
       <div className="w-full flex flex-col justify-center items-center space-y-16">
-        <PollDetail data={data}/>
-        <ShareCard url={shareUrl}/>
-        <CommentSection allow_comment={data.allow_comment} unique_id={data.unique_id}/>
+          <span>Hello</span>
       </div>
     </>
   )
