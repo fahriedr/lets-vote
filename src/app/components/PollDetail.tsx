@@ -14,6 +14,12 @@ const PollDetail: React.FC<Param> = ({ data }) => {
   const [selected, setSelected] = useState<string>("");
   const router = useRouter()
 
+
+  const handleVoteSubmit = async () => {
+
+    const res = await fetch('/api/')
+  }
+
   return (
     <div className="flex flex-col w-full lg:w-[50%] rounded overflow-hidden shadow-lg bg-[#393E46] px-8 py-8">
         <span className="text-2xl font-bold">{data.title}</span>
@@ -32,7 +38,7 @@ const PollDetail: React.FC<Param> = ({ data }) => {
           ))}
         </div>
         <div className="flex flex-row space-x-4 ">
-          <button className="flex items-center bg-blue-500 w-max px-8 py-2 rounded-md mt-6 font-bold hover:bg-blue-700">
+          <button onClick={} className="flex items-center bg-blue-500 w-max px-8 py-2 rounded-md mt-6 font-bold hover:bg-blue-700">
             Vote
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="ml-2 size-4">
               <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
