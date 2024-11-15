@@ -23,8 +23,6 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
 
 		const body = await req.json()
 
-        console.log(body, 'body')
-
         // Perform validation
         const result = voteSchema.safeParse(body)
 
