@@ -1,3 +1,6 @@
+import CommentSection from "@/app/components/CommentSection"
+import PollResult from "@/app/components/PollResult"
+import ShareCard from "@/app/components/ShareCard"
 import React from "react"
 
 interface Param {
@@ -6,7 +9,7 @@ interface Param {
   }
 }
 
-const Detail = async (
+const Result = async (
     {params} : Param
   )=> {
 
@@ -14,20 +17,21 @@ const Detail = async (
 
   const { id } = await params
  
-  const res = await fetch(`${baseUrl}/api/poll/${id}`, {
+  const res = await fetch(`${baseUrl}/api/poll/${id}/result`, {
     method: 'GET'
   })
 
   const { data } = await res.json()
 
-  const shareUrl = `${baseUrl}/${id}`
+    const shareUrl = `${baseUrl}/${id}`
+
   return (
-    <>
-      <div className="w-full flex flex-col justify-center items-center space-y-16">
-          <span>Hello</span>
-      </div>
-    </>
+    <div className="w-full flex flex-col justify-center items-center space-y-16">
+      <PollResult data={data}/>
+      <ShareCard url={shareUrl}/>
+      <CommentSection allow_comment={data.allow_comment} unique_id={data.unique_id}/>
+    </div>
   )
 }
 
-export default Detail
+export default Result
