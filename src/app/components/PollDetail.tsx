@@ -1,33 +1,46 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import RadioButton from "./RadioButton"
 import moment from "moment"
 import { useRouter } from 'next/navigation'
 import CheckboxCard from "./CheckBox"
 import FingerprintJS from '@fingerprintjs/fingerprintjs'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface Param {
   data: any;
 }
 
 const PollDetail: React.FC<Param> = ({ data }) => {
-  const fpPromise = FingerprintJS.load()
+
+  const [fingerprint, setFingerprint] = useState<string | null>(null)
   const [options, setOptions] = useState<string[]>([])
   const [name, setName] = useState<string>('')
   const router = useRouter()
+  const [buttonLoading, setButtonLoading] = useState(false);
 
 
   const handleVoteSubmit = async () => {
 
-    const fp = await fpPromise
-    const key = await fp.get()
+    setButtonLoading(true)
+
+    if(options.length < 1) {
+      toast.error('Please choose at least one option')
+      return false
+    }
+
+    if(data.require_voter_name) {
+      toast.error("Name is required!")
+      return false
+    }
 
     const body = {
       poll_unique_id: data.unique_id,
       options: options,
       name: name,
-      browser_key: key.visitorId
+      browser_key: fingerprint
     }
 
     const res = await fetch(`/api/poll/vote`, {
@@ -37,7 +50,14 @@ const PollDetail: React.FC<Param> = ({ data }) => {
 
     const result = await res.json()
 
-    console.log(result);
+    if(result.error) {
+      toast.error('Sorry, something went wrong!')
+      return false
+    }
+
+    setButtonLoading(false)
+
+    router.push(`/${data.unique_id}/result`)
   }
 
   const handleSelectOption = async (newValue: string) => {
@@ -59,8 +79,23 @@ const PollDetail: React.FC<Param> = ({ data }) => {
     return options.includes(val)
   }
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const fpPromise = FingerprintJS.load();
+      fpPromise
+        .then(fp => fp.get())
+        .then(result => {
+          setFingerprint(result.visitorId);
+        })
+        .catch(error => {
+          console.error('Error getting fingerprint:', error);
+        });
+    }
+  }, []);
+
   return (
     <div className="flex flex-col w-full lg:w-[50%] rounded overflow-hidden shadow-lg bg-[#393E46] px-8 py-8">
+      <ToastContainer />
       <span className="text-2xl font-bold">{data.title}</span>
       <span className="text-xs">{moment(data.created_at).startOf('day').fromNow()}</span>
 
@@ -111,11 +146,24 @@ const PollDetail: React.FC<Param> = ({ data }) => {
         <></>
       }
       <div className="flex flex-row space-x-4 ">
-        <button onClick={handleVoteSubmit} className="flex items-center bg-blue-500 w-max px-8 py-2 rounded-md mt-6 font-bold hover:bg-blue-700">
-          Vote
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="ml-2 size-4">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-          </svg>
+        <button onClick={handleVoteSubmit} disabled={buttonLoading} className="flex items-center bg-blue-500 w-max px-8 py-2 rounded-md mt-6 font-bold hover:bg-blue-700">
+          {
+             buttonLoading ? 
+             <>
+             <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              Loading...
+             </>
+             :
+             <>
+              Vote
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="ml-2 size-4">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+              </svg>
+             </>
+          }
         </button>
         <button type="button" onClick={() => router.push(`/${data.unique_id}/result`)} className="flex items-center bg-[#393E46] border-[#a6a7a8] border-solid border-2 w-max px-8 py-2 rounded-md mt-6 font-bold hover:bg-gray-500">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="mr-2 size-5">
