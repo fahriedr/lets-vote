@@ -1,6 +1,9 @@
 import React, { useState } from "react"
 import { VoteSecurity } from "../types"
 import moment from "moment"
+import { useRouter } from 'next/navigation'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 type Form = {
 	title: string,
@@ -12,7 +15,7 @@ type Form = {
 	require_voter_name: boolean,
 }
 
-function PollingCard() {
+const PollingCard: React.FC = () => {
 	const [multipleOptionToggle, setMultipleOptionToggle] = useState(false)
 	const [allowCommentToggle, setAllowCommentToggle] = useState(false)
 	const [scheduleToggle, setScheduleToggle] = useState(false)
@@ -23,10 +26,23 @@ function PollingCard() {
 	const [voteSecurity, setVoteSecurity] = useState<VoteSecurity>()
 	const [options, setOptions] = useState([""])
 
+	const router = useRouter()
+
 
 	// ====================================================== //
 
 	const submitForm =  async () => {
+
+		if(!voteSecurity) {
+			toast.error('Please select voting security first!')
+			return false
+		}
+
+		if(scheduleToggle && !scheduleDate) {
+			toast.error('Please fill end date first!')
+			return false
+		}
+
 		const data: Form = {
 			title: title,
 			options: options,
@@ -45,7 +61,13 @@ function PollingCard() {
 		const result = await res.json()
 
 		if(result.errors) {
+
+			toast.error('Sorry, something went wrong!')
+			return false
+
 		}
+
+		router.push(`/${result.data.unique_id}`)
 
 	}
 
@@ -75,6 +97,7 @@ function PollingCard() {
 
 	return (
 		<div className="flex w-full lg:w-[50%] rounded overflow-hidden shadow-lg bg-[#393E46] px-8 py-8">
+		<ToastContainer />
 			<div className="flex w-full flex-col gap-6">
 				<div className="flex flex-col w-full">
 					<label className="tracking-wider text-sm mb-1 block font-bold text-white">
