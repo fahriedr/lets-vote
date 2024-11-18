@@ -54,10 +54,10 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
 
         if(query.vote_security === 'ip') {
             const checkVoteByIp = await Vote.findOne({poll_unique_id: data.poll_unique_id, ip: ip_address})
-            if(checkVoteByIp) throw new CustomError('Your IP Address already vote for this poll.', 422)
+            if(checkVoteByIp) throw new CustomError('Your IP Address already voted for this poll.', 422)
         } else {
             const checkVoteByBrowser = await Vote.findOne({poll_unique_id: data.poll_unique_id, browser: data.browser_key})
-            if(checkVoteByBrowser) throw new CustomError('You already vote.', 422)
+            if(checkVoteByBrowser) throw new CustomError('You already voted in this poll.', 422)
         }
 
         const checkOptions = query.options.filter((option: Option) => 

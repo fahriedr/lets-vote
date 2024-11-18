@@ -57,7 +57,15 @@ const PollDetail: React.FC<Param> = ({ data }) => {
 
     setButtonLoading(false)
 
-    router.push(`/${data.unique_id}/result`)
+    if(!result.success) {
+      console.log(result, 'res')
+      toast.error(result.message)
+      return false
+
+    } else {
+      router.push(`/${data.unique_id}/result`)
+    }
+
   }
 
   const handleSelectOption = async (newValue: string) => {
