@@ -27,7 +27,7 @@ const ShareCard = ({url}: Param) => {
 
 
   return (
-    <div className="flex flex-col w-full lg:w-[50%] rounded overflow-hidden shadow-lg bg-[#393E46]">
+    <div className="flex flex-col w-full lg:max-w-[894px] rounded overflow-hidden shadow-lg bg-[#393E46]">
       <div className='flex flex-row items-center border-gray-500 border-solid border-b py-6 px-6 space-x-2'>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-4">
           <path fillRule="evenodd" d="M15.75 4.5a3 3 0 1 1 .825 2.066l-8.421 4.679a3.002 3.002 0 0 1 0 1.51l8.421 4.679a3 3 0 1 1-.729 1.31l-8.421-4.678a3 3 0 1 1 0-4.132l8.421-4.679a3 3 0 0 1-.096-.755Z" clipRule="evenodd" />

@@ -60,6 +60,8 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
             if(checkVoteByBrowser) throw new CustomError('You already voted in this poll.', 422)
         }
 
+        if(query.end_date && query.end_date < moment().format('YYYY-MM-DD h:mm:ss')) throw new CustomError('Poll already closed', 422)
+
         const checkOptions = query.options.filter((option: Option) => 
             body.options.includes(option.uuid)    
         )

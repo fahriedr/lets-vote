@@ -23,7 +23,7 @@ const Result = async (
 
   const { data } = await res.json()
 
-    const shareUrl = `${baseUrl}/${id}`
+    const shareUrl = `${baseUrl}/poll/${id}`
 
   return (
     <div className="w-full flex flex-col justify-center items-center space-y-16">

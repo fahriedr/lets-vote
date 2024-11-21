@@ -5,7 +5,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { ZodError, z,  } from "zod"
 import slugify from "slugify"
 import { v4 as uuidv4 } from 'uuid'
-import { randomUniqueIdGenerator } from "@/app/lib/helper"
+import { CustomError, randomUniqueIdGenerator } from "@/app/lib/helper"
 import moment from "moment"
 
 const pollSchema = z.object({
@@ -52,8 +52,6 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
 			return opt
 		})
 
-		console.log(moment().format('YYYY-MM-DD h:mm:ss'), 'date')
-
 		const poll = new Poll({
 			unique_id: randomUniqueIdGenerator(),
 			title: data.title,
@@ -61,7 +59,7 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
 			options: options,
 			multiple_choice: data.multiple_choice,
 			allow_comment: data.allow_comment,
-			end_date: data.end_date ?? null,
+			end_date: data.end_date ? moment(data.end_date).format('YYYY-MM-DD h:mm:ss') : null,
 			vote_security: data.vote_security,
 			require_voter_name: data.require_voter_name,
 			created_at: moment().format('YYYY-MM-DD h:mm:ss')
@@ -75,7 +73,27 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
 			data: response
 		})
 	} catch (error) {
-		console.log(error, "error")
-		return new NextResponse("Something went wrong", { status: 500 })
+
+		console.error("Error fetching data:", error)
+
+        // Handle CustomError specifically
+        if (error instanceof CustomError) {
+            return NextResponse.json(
+                {
+                    message: error.message,
+                    success: false,
+                },
+                { status: error.statusCode }
+            )
+        }
+
+        // Handle other unknown errors
+        return NextResponse.json(
+            {
+                message: "An unknown error occurred",
+                success: false,
+            },
+            { status: 500 }
+        )
 	}
 }

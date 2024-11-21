@@ -15,7 +15,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Let's Vote",
+  title: "Vote",
   description: "Membuat Polling online",
 };
 
@@ -30,7 +30,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#222831] font-inter`}
       >
         <Navbar/>
-        <div className="flex-auto w-full mx-auto pt-10 pb-12 sm:px-4">
+        <div className="flex-auto w-full pt-10 pb-12 sm:px-4 px-2 lg:px-0">
           {children}
         </div>
       </body>

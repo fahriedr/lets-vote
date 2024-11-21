@@ -72,7 +72,7 @@ const PollingCard: React.FC = () => {
 
 		setButtonLoading(false)
 
-		router.push(`/${result.data.unique_id}`)
+		router.push(`/poll/${result.data.unique_id}`)
 
 	}
 
@@ -101,7 +101,7 @@ const PollingCard: React.FC = () => {
 	const handleVoteSecurityOnChange = (e: any) => setVoteSecurity(e.target.value)
 
 	return (
-		<div className="flex w-full lg:w-[50%] rounded overflow-hidden shadow-lg bg-[#393E46] px-8 py-8">
+		<div className="flex w-full lg:max-w-[894px] rounded overflow-hidden shadow-lg bg-[#393E46] px-8 py-8">
 		<ToastContainer />
 			<div className="flex w-full flex-col gap-6">
 				<div className="flex flex-col w-full">
@@ -158,7 +158,8 @@ const PollingCard: React.FC = () => {
 				<div className="flex items-center space-x-2">
 					<button
 						onClick={() => handleAddOption()}
-						className="flex items-center px-3 py-2 bg-blue-500 text-gray-200 rounded-md hover:bg-gray-600 transition font-semibold text-base"
+						disabled={options.length > 9}
+						className="flex items-center px-3 py-2 bg-blue-500 text-gray-200 rounded-md hover:bg-gray-600 transition font-semibold text-base disabled:bg-gray-500"
 					>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
