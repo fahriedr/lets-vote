@@ -16,7 +16,11 @@ export const GET = async (
 
         const query = await Poll.findOne({
             unique_id: id
-        }).exec()
+        })
+        .populate('comments')
+        .exec()
+
+        console.log(query, 'query')
 
         if (!query) throw new CustomError('Data not found', 404)
 

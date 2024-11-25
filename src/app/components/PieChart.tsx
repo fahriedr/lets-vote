@@ -20,7 +20,6 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 const PieChart: React.FC<PieChartProps> = ({ data, totalVotes }) => {
 
-    console.log(data, 'data');
 
     const labels = data.map((val, i) => val.title)
     const colors = data.map((val, i) => chartColor[i])

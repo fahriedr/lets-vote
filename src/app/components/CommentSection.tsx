@@ -1,11 +1,18 @@
+"use client"
+
 import React from 'react'
+import { IComment } from '../schemas/pollSchema';
+import CommentForm from './CommentForm';
+import CommentList from './CommentList';
 
 type Param = {
+  data: Array<IComment>;
   allow_comment: boolean;
   unique_id: string;
 }
 
-const CommentSection = ({allow_comment, unique_id}: Param) => {
+const CommentSection = ({ data = [], allow_comment, unique_id }: Param) => {
+  console.log(data, 'data comment');
   return (
     <div className="flex flex-col w-full lg:max-w-[894px] rounded overflow-hidden shadow-lg bg-[#393E46]">
       <div className='flex flex-row items-center border-gray-500 border-solid border-b py-6 px-6 space-x-2'>
@@ -17,14 +24,29 @@ const CommentSection = ({allow_comment, unique_id}: Param) => {
         <span>Comments</span>
       </div>
       <div className='flex px-6 py-6'>
-        { allow_comment ?
+        {allow_comment ?
+          <div className='flex flex-col w-full'>
+            {
+              data.length > 0 ?
+                <div className='flex flex-col space-y-6'>
+                  {
+                    data.map((val: any, i: number) => {
+                      return (
+                        <CommentList key={i} name={val.name} comment={val.text} date={val.created_at} />
+                      )
+                    })
+                  }
+                </div>
+                :
+                <></>
+            }
+            <div className="w-full h-[0.1px] px-0 bg-gray-500 mt-4 mb-4"></div>
+            <CommentForm unique_id={unique_id} />
+          </div>
+          :
           <>
-            <span>Comment here</span>
-          </>
-        :
-        <>
-          <span>Comments are disabled.</span>
-        </>}
+            <span>Comments are disabled.</span>
+          </>}
       </div>
     </div>
   )
