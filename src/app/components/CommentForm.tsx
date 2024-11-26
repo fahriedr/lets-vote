@@ -33,13 +33,11 @@ const CommentForm = ({ unique_id }: Param) => {
             browser_key: fingerprint
         }
 
-        console.log(data, 'data')
         const res = await fetch(`/api/poll/comment/create`, {
             method: 'POST',
             body: JSON.stringify(data)
         })
 
-        console.log(res, 'res');
         const result = await res.json()
 
         if (result.error) {

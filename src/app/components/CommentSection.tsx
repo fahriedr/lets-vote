@@ -12,7 +12,6 @@ type Param = {
 }
 
 const CommentSection = ({ data = [], allow_comment, unique_id }: Param) => {
-  console.log(data, 'data comment');
   return (
     <div className="flex flex-col w-full lg:max-w-[894px] rounded overflow-hidden shadow-lg bg-[#393E46]">
       <div className='flex flex-row items-center border-gray-500 border-solid border-b py-6 px-6 space-x-2'>

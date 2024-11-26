@@ -20,7 +20,7 @@ const PollResult: React.FC<Param> = ({ data }) => {
 
         let totalVal = 0
 
-        const response = res.map((val, i) => {
+        const response = res.map((val: any, i: number) => {
             const value = {
                 title: val.name,
                 value: val.count,

@@ -20,8 +20,6 @@ export const GET = async (
         .populate('comments')
         .exec()
 
-        console.log(query, 'query')
-
         if (!query) throw new CustomError('Data not found', 404)
 
         return NextResponse.json({

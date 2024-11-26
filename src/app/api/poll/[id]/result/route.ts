@@ -55,8 +55,6 @@ export const GET = async (
             }
         ]);
 
-        console.log(voteCounts, 'vote')
-
         return NextResponse.json({
             message: "success",
             success: true,

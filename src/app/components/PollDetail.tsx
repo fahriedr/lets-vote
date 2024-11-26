@@ -58,7 +58,6 @@ const PollDetail: React.FC<Param> = ({ data }) => {
     setButtonLoading(false)
 
     if(!result.success) {
-      console.log(result, 'res')
       toast.error(result.message)
       return false
 
