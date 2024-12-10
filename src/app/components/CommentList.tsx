@@ -7,7 +7,7 @@ import moment from 'moment';
 type Param = {
   name: string;
   comment: string;
-  date: any;
+  date: string;
 }
 
 const CommentList = ({ name, comment, date }: Param) => {

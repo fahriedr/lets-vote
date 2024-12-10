@@ -68,7 +68,7 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
 
         if (checkOptions.length < 1) throw new CustomError('Option is not on the list', 422)
 
-        let vote_data = {
+        const vote_data = {
             unique_id: randomUniqueIdGenerator(),
             poll_unique_id: data.poll_unique_id,
             name: data.name,

@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 const Navbar = () => {
@@ -5,7 +6,7 @@ const Navbar = () => {
     <header className='sticky top-0 z-40 bg-[#393E46] flex justify-center'>
         <div className='flex w-[70%] h-[4rem] items-center px-4 justify-between'>
             <div className='flex items-center truncate'>
-                <a href='/' className='text-2xl font-bold'>Vote</a>
+                <Link href='/' className='text-2xl font-bold'>Vote</Link>
                 <div className='hidden lg:flex lg:ml-6 lg:space-x-8 font-bold items-center'>
                     <a href='/'>Create Polling</a>
                     <a href='/search'>Search Polling</a>

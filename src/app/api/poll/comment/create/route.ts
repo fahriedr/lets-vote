@@ -44,7 +44,7 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
 
         if(!query.allow_comment) throw new CustomError('Comment are not allowed in this poll', 403)
 
-        let comment_data = {
+        const comment_data = {
             unique_id: randomUniqueIdGenerator(),
             poll_unique_id: data.poll_unique_id,
             name: data.name,
