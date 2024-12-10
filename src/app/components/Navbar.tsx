@@ -8,14 +8,14 @@ const Navbar = () => {
             <div className='flex items-center truncate'>
                 <Link href='/' className='text-2xl font-bold'>Vote</Link>
                 <div className='hidden lg:flex lg:ml-6 lg:space-x-8 font-bold items-center'>
-                    <a href='/'>Create Polling</a>
-                    <a href='/search'>Search Polling</a>
-                    <a href='/about'>About</a>
+                    <Link href='/'>Create Polling</Link>
+                    <Link href='/search'>Search Polling</Link>
+                    <Link href='/about'>About</Link>
                 </div>
             </div>
             <div className='flex items-center gap-4'>
-              <a href='/login' className='flex items-center font-semibold text-sm'>Login</a>
-              <a href='/register' className='flex items-center bg-blue-500 px-4 py-2 rounded-md font-semibold text-sm'>Sign Up</a>
+              <Link href='/login' className='flex items-center font-semibold text-sm'>Login</Link>
+              <Link href='/register' className='flex items-center bg-blue-500 px-4 py-2 rounded-md font-semibold text-sm'>Sign Up</Link>
             </div>
         </div>
     </header>
