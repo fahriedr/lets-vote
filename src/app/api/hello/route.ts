@@ -1,7 +1,6 @@
-import { NextRequest, NextResponse } from '../../../../node_modules/next/server';
+import { NextResponse } from '../../../../node_modules/next/server';
 
-
-export const GET = async (req: NextRequest, res: NextResponse) => {
+export const GET = async () => {
   try {
 
     return NextResponse.json({"message" : "Hello"})

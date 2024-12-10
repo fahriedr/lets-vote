@@ -23,7 +23,7 @@ const PollingCard: React.FC = () => {
 	const [title, setTitle] = useState('');
 	const [scheduleDate, setScheduleDate] = useState("")
 	const [requireName, setRequireName] = useState(false)
-	const [voteSecurity, setVoteSecurity] = useState<VoteSecurity>()
+	const [voteSecurity, setVoteSecurity] = useState<string>()
 	const [options, setOptions] = useState([""])
 	const [buttonLoading, setButtonLoading] = useState(false);
 
@@ -95,10 +95,10 @@ const PollingCard: React.FC = () => {
 	const toggleAllowCommentSwitch = () =>
 		setAllowCommentToggle(!allowCommentToggle)
 	const toggleScheduleSwitch = () => setScheduleToggle(!scheduleToggle)
-	const onChangeScheduleDate = (e: any) => setScheduleDate(e.target.value)
+	const onChangeScheduleDate = (e: React.ChangeEvent<HTMLInputElement>) => setScheduleDate(e.target.value)
 	const toggleRequireNameSwitch = () => setRequireName(!requireName)
-	const handleTitleOnChange = (e: any) => setTitle(e.target.value) 
-	const handleVoteSecurityOnChange = (e: any) => setVoteSecurity(e.target.value)
+	const handleTitleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value) 
+	const handleVoteSecurityOnChange = (e: React.ChangeEvent<HTMLSelectElement>) => setVoteSecurity(e.target.value)
 
 	return (
 		<div className="flex w-full lg:max-w-[894px] rounded overflow-hidden shadow-lg bg-[#393E46] px-8 py-8">

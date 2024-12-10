@@ -27,7 +27,7 @@ const Detail = async (
 
   if(!data) notFound()
 
-  const shareUrl = `${baseUrl}/poll/${id}`
+  const shareUrl = `${baseUrl}/poll/${id}/result`
   return (
     <>
       <div className="w-full flex flex-col justify-center items-center space-y-16">

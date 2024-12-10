@@ -2,7 +2,7 @@ import { connectToDatabase } from "@/app/lib/database"
 import { Poll } from "@/app/schemas/pollSchema"
 import { VoteSecurity } from "@/app/types/index"
 import { NextRequest, NextResponse } from "next/server"
-import { ZodError, z,  } from "zod"
+import { z,  } from "zod"
 import slugify from "slugify"
 import { v4 as uuidv4 } from 'uuid'
 import { CustomError, randomUniqueIdGenerator } from "@/app/lib/helper"
@@ -20,7 +20,7 @@ const pollSchema = z.object({
 
 type Poll = z.infer<typeof pollSchema>
 
-export const POST = async (req: NextRequest, res: NextResponse) => {
+export const POST = async (req: NextRequest) => {
 	try {
 		await connectToDatabase()
 		const body = await req.json()
@@ -44,7 +44,7 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
 
 		const data = result.data
 
-		const options = data.options.map((i: any) => {
+		const options = data.options.map((i: string) => {
 			const opt = {
 				uuid: uuidv4(),
 				value: i
