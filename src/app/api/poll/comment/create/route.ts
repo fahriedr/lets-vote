@@ -2,7 +2,7 @@ import { connectToDatabase } from "@/app/lib/database";
 import { CustomError, randomUniqueIdGenerator } from "@/app/lib/helper";
 import { Poll } from "@/app/schemas/pollSchema";
 import moment from "moment";
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 import { z } from "zod";
 
 const commentParam = z.object({
@@ -12,7 +12,7 @@ const commentParam = z.object({
     browser_key: z.string(),
 })
 
-export const POST = async (req: NextRequest, res: NextResponse) => {
+export const POST = async (req: NextRequest) => {
 
     try {
 

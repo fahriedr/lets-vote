@@ -1,7 +1,7 @@
 import { connectToDatabase } from "@/app/lib/database"
 import { CustomError } from "@/app/lib/helper";
 import { Poll } from "@/app/schemas/pollSchema"
-import { NextRequest, NextResponse } from "next/server"
+import { NextResponse } from "next/server"
 
 
 export const GET = async (
@@ -29,7 +29,6 @@ export const GET = async (
             console.log(poll.comments)
             return poll.comments
         })
-        // .exec()
 
         if (!query) throw new CustomError('Data not found', 404)
 
