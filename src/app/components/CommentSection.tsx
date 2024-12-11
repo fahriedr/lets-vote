@@ -11,6 +11,10 @@ type Param = {
   unique_id: string;
 }
 
+interface Comment {
+
+}
+
 const CommentSection = ({ data = [], allow_comment, unique_id }: Param) => {
   return (
     <div className="flex flex-col w-full lg:max-w-[894px] rounded overflow-hidden shadow-lg bg-[#393E46]">
@@ -29,7 +33,7 @@ const CommentSection = ({ data = [], allow_comment, unique_id }: Param) => {
               data.length > 0 ?
                 <div className='flex flex-col space-y-6'>
                   {
-                    data.map((val: any, i: number) => {
+                    data.map((val: IComment, i: number) => {
                       return (
                         <CommentList key={i} name={val.name} comment={val.text} date={val.created_at} />
                       )

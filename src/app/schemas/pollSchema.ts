@@ -9,7 +9,7 @@ export interface IComment {
     browser_key: string;
     created_at?: Date;
 }
-interface IPoll {
+export interface IPoll {
     unique_id: string;
     title: string;
     slug: string;

@@ -1,13 +1,12 @@
 import Image from 'next/image';
 import React from 'react'
-import { IComment } from '../schemas/pollSchema';
 import avatar from '../../../public/images/avatar.png';
 import moment from 'moment';
 
 type Param = {
   name: string;
   comment: string;
-  date: string;
+  date: Date | undefined;
 }
 
 const CommentList = ({ name, comment, date }: Param) => {

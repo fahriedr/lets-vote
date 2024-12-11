@@ -1,5 +1,5 @@
 import React from 'react'
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js"
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, TooltipItem, ChartType } from "chart.js"
 import { Pie } from "react-chartjs-2"
 import { chartColor } from '../lib/constant';
 
@@ -18,12 +18,12 @@ interface PieChartProps {
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const PieChart: React.FC<PieChartProps> = ({ data, totalVotes }) => {
+const PieChart: React.FC<PieChartProps> = ({ data }) => {
 
 
-    const labels = data.map((val, i) => val.title)
-    const colors = data.map((val, i) => chartColor[i])
-    const votes = data.map((val, i) => val.value)
+    const labels = data.map((val) => val.title)
+    const colors = data.map((val, i: number) => chartColor[i])
+    const votes = data.map((val) => val.value)
 
 
     const data2 = {
@@ -44,7 +44,7 @@ const PieChart: React.FC<PieChartProps> = ({ data, totalVotes }) => {
             tooltip: {
                 enabled: true, // Show tooltips on hover
                 callbacks: {
-                    label: (tooltipItem: any) => {
+                    label: (tooltipItem: TooltipItem<ChartType>) => {
                         const label = tooltipItem.label || "";
                         const value = tooltipItem.raw || 0;
                         return `${label}: ${value}`;

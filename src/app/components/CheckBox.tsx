@@ -1,4 +1,4 @@
-import React, { useDeferredValue, useState } from 'react';
+import React from 'react';
 
 interface CheckboxCardProps {
     key: number;

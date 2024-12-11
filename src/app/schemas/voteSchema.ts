@@ -1,8 +1,5 @@
 import { Schema, model, models} from 'mongoose';
 
-type Value = {
-    uuid: string;
-}
 
 export interface IVote {
     unique_id: string;

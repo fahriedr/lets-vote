@@ -8,9 +8,11 @@ import CheckboxCard from "./CheckBox"
 import FingerprintJS from '@fingerprintjs/fingerprintjs'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { IPoll } from "../schemas/pollSchema"
+import { Option } from "../types"
 
 interface Param {
-  data: any;
+  data: IPoll;
 }
 
 const PollDetail: React.FC<Param> = ({ data }) => {
@@ -110,7 +112,7 @@ const PollDetail: React.FC<Param> = ({ data }) => {
       <div className="space-y-2">
         {data.multiple_choice ?
           <>
-            {data.options.map((val: any, i: number) => (
+            {data.options.map((val: Option, i: number) => (
               <CheckboxCard
                 key={i}
                 title={val.value}
@@ -122,13 +124,13 @@ const PollDetail: React.FC<Param> = ({ data }) => {
           </>
           :
           <>
-            {data.options.map((val: any, i: number) => (
+            {data.options.map((val: Option, i: number) => (
               <RadioButton
                 key={i}
                 label={val.value}
                 value={val.uuid}
                 isSelected={isSelected(val.uuid)}
-                onChange={(e) => handleSelectOption(val.uuid)}
+                onChange={() => handleSelectOption(val.uuid)}
               />
             ))}
           </>

@@ -4,15 +4,31 @@ import moment from 'moment';
 import React, { useEffect, useState } from 'react'
 import PieChart from '../components/PieChart';
 import { chartColor } from '../lib/constant';
+import { IPoll } from '../schemas/pollSchema';
 import ProgressBar from './ProgressBar';
 
+interface Vote {
+    count: number;
+    name: string;
+    uuid: string
+}
+
+interface Result {
+    color: string;
+    title: string;
+    value: number;
+}
+
 type Param = {
-    data: any
+    data: {
+        poll: IPoll,
+        vote: Array<Vote>
+    }
 }
 
 const PollResult: React.FC<Param> = ({ data }) => {
 
-    const [result, setResult] = useState([]);
+    const [result, setResult] = useState<Array<Result>>([]);
     const [totalVotes, setTotalVotes] = useState<number>(0)
 
     const loadResult = () => {
@@ -20,7 +36,7 @@ const PollResult: React.FC<Param> = ({ data }) => {
 
         let totalVal = 0
 
-        const response = res.map((val: any, i: number) => {
+        const response = res.map((val: Vote, i: number) => {
             const value = {
                 title: val.name,
                 value: val.count,

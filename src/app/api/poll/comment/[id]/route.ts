@@ -26,7 +26,6 @@ export const GET = async (
             },
         })
         .then(poll => {
-            console.log(poll.comments)
             return poll.comments
         })
 

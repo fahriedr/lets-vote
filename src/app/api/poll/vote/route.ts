@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { CustomError, randomUniqueIdGenerator } from "@/app/lib/helper"
 import { z } from "zod"
 import { connectToDatabase } from "@/app/lib/database"
-import { IVote, Vote } from "@/app/schemas/voteSchema"
+import { Vote } from "@/app/schemas/voteSchema"
 import { Poll } from "@/app/schemas/pollSchema"
 import { Option } from "@/app/types"
 import moment from "moment"
@@ -14,7 +14,7 @@ const voteSchema = z.object({
     browser_key: z.optional(z.string())
 })
 
-export const POST = async (req: NextRequest, res: NextResponse) => {
+export const POST = async (req: NextRequest) => {
 
     
     try {

@@ -2,7 +2,7 @@ import { connectToDatabase } from "@/app/lib/database"
 import { CustomError } from "@/app/lib/helper";
 import { Poll } from "@/app/schemas/pollSchema"
 import { Vote } from "@/app/schemas/voteSchema";
-import { NextRequest, NextResponse } from "next/server"
+import { NextResponse } from "next/server"
 
 
 export const GET = async (
