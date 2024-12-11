@@ -1,7 +1,7 @@
 import mongoose from "mongoose"
 
 declare global {
-    let mongoose: any
+    var mongoose: any
 }
 
 const MONGODB_URI = process.env.MONGO_URL!;
