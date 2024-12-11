@@ -13,7 +13,7 @@ export const GET = async (
     try {
 
         await connectToDatabase()
-        const { id } = await params;
+        const { id } = params;
 
         const poll = await Poll.findOne({
             unique_id: id
