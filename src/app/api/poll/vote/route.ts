@@ -14,6 +14,16 @@ const voteSchema = z.object({
     browser_key: z.optional(z.string())
 })
 
+interface VoteData {
+    unique_id: string,
+    poll_unique_id: string,
+    name: string | undefined,
+    value: Array<string>,
+    created_at: string,
+    ip: undefined | string | null,
+    browser: undefined | string | null
+}
+
 export const POST = async (req: NextRequest) => {
 
     
@@ -68,12 +78,14 @@ export const POST = async (req: NextRequest) => {
 
         if (checkOptions.length < 1) throw new CustomError('Option is not on the list', 422)
 
-        const vote_data = {
+        let vote_data: VoteData = {
             unique_id: randomUniqueIdGenerator(),
             poll_unique_id: data.poll_unique_id,
             name: data.name,
             value: data.options,
-            created_at: moment().format('YYYY-MM-DD h:mm:ss')
+            created_at: moment().format('YYYY-MM-DD h:mm:ss'),
+            ip: null,
+            browser: null
         }
 
         if(query.vote_security === 'ip') {

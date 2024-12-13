@@ -6,9 +6,7 @@ import { notFound } from 'next/navigation';
 
 
 interface Param {
-  params: {
-    id: string
-  }
+  params: Promise<{ id: string }>
 }
 
 const Detail = async (

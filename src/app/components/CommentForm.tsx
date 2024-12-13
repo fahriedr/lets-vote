@@ -18,8 +18,8 @@ const CommentForm = ({ unique_id }: Param) => {
     const [name, setName] = useState<string>("");
     const [comment, setComment] = useState<string>("");
 
-    const handleNameOnChange = (e) => setName(e.target.value)
-    const handleCommentOnChange = (e) => setComment(e.target.value)
+    const handleNameOnChange = (e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)
+    const handleCommentOnChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => setComment(e.target.value)
 
     const sendComment = async () => {
 

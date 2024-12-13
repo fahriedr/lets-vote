@@ -5,9 +5,7 @@ import { notFound } from "next/navigation"
 import React from "react"
 
 interface Param {
-  params: {
-    id: string
-  }
+  params: Promise<{ id: string }>
 }
 
 const Result = async (
