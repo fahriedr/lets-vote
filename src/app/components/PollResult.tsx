@@ -54,7 +54,7 @@ const PollResult: React.FC<Param> = ({ data }) => {
 
     useEffect(() => {
         loadResult()
-    });
+    },[]);
 
     return (
         <div className="flex flex-col w-full lg:max-w-[894px] rounded overflow-hidden shadow-lg bg-[#393E46] px-8 py-8">

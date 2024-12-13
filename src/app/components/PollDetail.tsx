@@ -30,12 +30,16 @@ const PollDetail: React.FC<Param> = ({ data }) => {
 
     if(options.length < 1) {
       toast.error('Please choose at least one option')
+      setButtonLoading(false)
       return false
     }
 
     if(data.require_voter_name) {
-      toast.error("Name is required!")
-      return false
+      if(name === '' || name === null) {
+        toast.error("Name is required!")
+        setButtonLoading(false)
+        return false
+      }
     }
 
     const body = {
@@ -64,7 +68,7 @@ const PollDetail: React.FC<Param> = ({ data }) => {
       return false
 
     } else {
-      router.push(`/${data.unique_id}/result`)
+      router.push(`/poll/${data.unique_id}/result`)
     }
 
   }
