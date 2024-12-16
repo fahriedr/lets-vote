@@ -16,7 +16,6 @@ type Form = {
 }
 
 const PollingCard: React.FC = () => {
-	console.log(process.env.NEXT_PUBLIC_BASE_URL)
 	const [multipleOptionToggle, setMultipleOptionToggle] = useState(false)
 	const [allowCommentToggle, setAllowCommentToggle] = useState(false)
 	const [scheduleToggle, setScheduleToggle] = useState(false)
