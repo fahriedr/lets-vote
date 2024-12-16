@@ -13,7 +13,7 @@ const Detail = async (
     {params} : Param
   )=> {
 
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
+  const baseUrl = process.env.ENV === 'DEVELOPMENT' ? process.env.NEXT_PUBLIC_BASE_URL : ''
 
   const { id } = await params
  
