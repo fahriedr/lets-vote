@@ -38,11 +38,13 @@ const PollingCard: React.FC = () => {
 
 		if(!voteSecurity) {
 			toast.error('Please select voting security first!')
+			setButtonLoading(false)
 			return false
 		}
 
 		if(scheduleToggle && !scheduleDate) {
 			toast.error('Please fill end date first!')
+			setButtonLoading(false)
 			return false
 		}
 
